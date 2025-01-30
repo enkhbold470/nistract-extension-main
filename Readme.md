@@ -16,6 +16,7 @@ A Chrome extension designed to help you stay focused on Instagram by removing di
 ## Why?
 
 Social media can be distracting and time-consuming. This extension gives you control over what content you see, helping you maintain focus and reduce mindless scrolling.
+![image](https://github.com/user-attachments/assets/2570e7c2-59ff-4b5e-9ec4-40f3a8eb54a1)
 
 
 License
