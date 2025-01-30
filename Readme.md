@@ -13,6 +13,9 @@ A Chrome extension designed to help you stay focused on Instagram by removing di
 - Block Explore page
 - Customize which elements to hide
 
+  # How to install?
+![ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/988dd66c-f775-459a-9ce7-4341eaf4998f)
+
 ## Why?
 
 Social media can be distracting and time-consuming. This extension gives you control over what content you see, helping you maintain focus and reduce mindless scrolling.
