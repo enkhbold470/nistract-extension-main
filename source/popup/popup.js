@@ -1,50 +1,60 @@
-import { labelsArray } from "../modules/lib.js";
+import { labelsArray, defaultOptions } from "../modules/lib.js";
 
-// Saving and loading options from storage
-const saveOptions = () => {
-  const options = {};
+// Save options to storage with proper error handling
+const saveOptions = async () => {
+    try {
+        const options = {};
+        for (const label of labelsArray) {
+            const element = document.getElementById(label);
+            if (element !== null) {
+                options[label] = element.checked;
+            }
+        }
 
-  for (const label of labelsArray) {
-    const element = document.getElementById(label);
-    if (element !== null) {
-      options[label] = element.checked;
+        await chrome.storage.sync.set(options);
+        
+        // Show success message
+        const status = document.getElementById("status");
+        status.textContent = "Saved! ✌️ Refresh now!";
+        
+        // Clear message after delay
+        setTimeout(() => {
+            status.textContent = "";
+        }, 2000);
+
+    } catch (error) {
+        console.error('Error saving options:', error);
+        const status = document.getElementById("status");
+        status.textContent = "Error saving settings";
+        status.style.color = "#ef4444"; // Red color for error
+        
+        setTimeout(() => {
+            status.textContent = "";
+            status.style.color = "var(--success)"; // Reset color
+        }, 2000);
     }
-  }
-
-  const onSet = () => {
-    const status = document.getElementById("status");
-    status.textContent = "Saved! ✌️ Refresh now!";
-    const intervalId = setInterval(() => {
-      status.textContent = "";
-      clearInterval(intervalId);
-    }, 2000);
-    console.log(chrome.storage.sync.get(options));
-  };
-
-  chrome.storage.sync.set(options, onSet);
 };
 
-const restoreOptions = () => {
-  chrome.storage.sync.get(labelsArray, (items) => {
-    for (const key of Object.keys(items)) {
-      document.getElementById(key).checked = items[key];
+// Restore options from storage with proper error handling
+const restoreOptions = async () => {
+    try {
+        // Get stored options, falling back to defaults
+        const items = await chrome.storage.sync.get(defaultOptions);
+        
+        // Update checkboxes
+        for (const [key, value] of Object.entries(items)) {
+            const element = document.getElementById(key);
+            if (element) {
+                element.checked = value;
+            }
+        }
+    } catch (error) {
+        console.error('Error restoring options:', error);
     }
-  });
 };
 
+// Initialize options when DOM is loaded
 document.addEventListener("DOMContentLoaded", restoreOptions);
+
+// Save options when save button is clicked
 document.getElementById("save").addEventListener("click", saveOptions);
-
-// Managing tab navigation
-const tabs = document.querySelectorAll("[data-tab-target]");
-const tabContents = document.querySelectorAll("[data-tab-content]");
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    const target = document.querySelector(tab.dataset.tabTarget);
-    tabContents.forEach((tabContent) => tabContent.classList.remove("active"));
-    tabs.forEach((tab) => tab.classList.remove("active"));
-
-    tab.classList.add("active");
-    target.classList.add("active");
-  });
-});

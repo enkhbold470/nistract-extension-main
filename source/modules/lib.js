@@ -1,3 +1,4 @@
+//lib.js
 export const defaultOptions = {
   blockReels: true,
   blockExplore: true,
