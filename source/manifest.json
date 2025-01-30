@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "Nistract",
+  "description": "Nistract for removing instagram addictive feature",
+  "version": "2.0.3",
+  "author": "aymyo",
+  "icons": {
+    "16": "public/instagram.png",
+    "32": "public/instagram.png",
+    "48": "public/instagram.png",
+    "128": "public/instagram.png"
+  },
+
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["https://*.instagram.com/*", "https://instagram.com/*", "https://threads.net/"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["content.js", "modules/main.js", "modules/lib.js"],
+      "matches": ["https://*.instagram.com/*", "https://instagram.com/*", "https://threads.net/"]
+    }
+  ],
+  "background": {
+    "service_worker": "service_worker.js"
+  },
+
+  "options_ui": {
+    "page": "popup/popup.html",
+    "open_in_tab": true
+  },
+
+  "action": {
+    "default_title": "Nistract Options",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "public/instagram.png",
+      "32": "public/instagram.png",
+      "48": "public/instagram.png",
+      "128": "public/instagram.png"
+    }
+  }
+}
