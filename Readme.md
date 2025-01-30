@@ -14,6 +14,7 @@ A Chrome extension designed to help you stay focused on Instagram by removing di
 - Customize which elements to hide
 
   # How to install?
+  https://youtu.be/SuR9-BfGt4s?si=M9RK7qFs5SkC2MtA
 ![ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/988dd66c-f775-459a-9ce7-4341eaf4998f)
 
 ## Why?
