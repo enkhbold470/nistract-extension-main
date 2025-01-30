@@ -1,6 +1,7 @@
 # Nistract - Instagram Focus Extension
 
 A Chrome extension designed to help you stay focused on Instagram by removing distracting elements.
+![image](https://github.com/user-attachments/assets/01072aab-51fc-4500-af2a-37bba7c00088)
 
 ## Features
 
