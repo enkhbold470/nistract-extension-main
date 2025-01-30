@@ -25,9 +25,6 @@
       "matches": ["https://*.instagram.com/*", "https://instagram.com/*", "https://threads.net/"]
     }
   ],
-  "background": {
-    "service_worker": "service_worker.js"
-  },
 
   "options_ui": {
     "page": "popup/popup.html",
